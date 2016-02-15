@@ -1,0 +1,32 @@
+<resources>
+
+    <style name="dialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/anim_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_out</item>
+    </style>
+
+    <!-- 1.定义Activity动画 -->
+    <style name="activityAnimation" parent="@android:style/Animation.Activity">
+
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+
+        <!-- 新Activity启动时，Enter动画 -->
+        <item name="android:activityOpenEnterAnimation">@anim/anim_in</item>
+        <!-- 新Activity启动时，原有Activity的Exit动画 -->
+        <item name="android:activityOpenExitAnimation">@anim/stay</item>
+
+        <!-- 新Activity退出时，原有Activity的Enter动画 -->
+        <item name="android:activityCloseEnterAnimation">@anim/stay</item>
+        <!-- 新Activity退出时，Exit动画 -->
+        <item name="android:activityCloseExitAnimation">@anim/anim_out</item>
+
+    </style>
+
+    <!-- 2. AppTheme中引用Activity动画 -->
+    <!-- 3. Manifest中的Application或Activity标签中，指定theme为AppTheme -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+    </style>
+    
+</resources>
