@@ -15,12 +15,12 @@
             android:layout_gravity="center"
             android:text="@string/hello_world" />
 
-        <ImageView
-            android:id="@+id/img_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom" />
-
+        <ProgressBar
+            android:id="@+id/progress"
+            android:indeterminateDrawable="@anim/animated_rotate"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminate="true" />
     </FrameLayout>
 
     <ScrollView
