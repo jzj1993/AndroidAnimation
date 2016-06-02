@@ -15,8 +15,10 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.graphics.drawable.Animatable;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Property;
 import android.view.Gravity;
@@ -29,8 +31,10 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -87,6 +91,18 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 frameAnimation();
+            }
+        });
+        addButton("AnimatedRotate", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animatedRotate();
+            }
+        });
+        addButton("Animation Drawable", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animationDrawable();
             }
         });
         addButton("Animation From XML", new View.OnClickListener() {
@@ -221,6 +237,26 @@ public class MainActivity extends Activity {
                 activityAnimationFromJava();
             }
         });
+    }
+
+    private void animationDrawable() {
+        ImageView imageView = (ImageView) findViewById(R.id.image_view);
+        imageView.setImageDrawable(new MyAnimDrawable());
+    }
+
+    private void animatedRotate() {
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progress);
+        final Drawable drawable = getResources().getDrawable(R.drawable.animated_rotate);
+        if (drawable != null) {
+            drawable.setBounds(0, 0, progressBar.getWidth(), progressBar.getHeight());
+            progressBar.setIndeterminateDrawable(drawable);
+            if (drawable instanceof Animatable) {
+                ((Animatable) drawable).start();
+            }
+        }
+
+        ImageView imageView = (ImageView) findViewById(R.id.image_view);
+        imageView.setImageDrawable(getResources().getDrawable(R.drawable.animated_rotate));
     }
 
     private AnimationDrawable mFrameAnimation = null;
