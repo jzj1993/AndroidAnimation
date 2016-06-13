@@ -9,14 +9,9 @@ import android.os.SystemClock;
 /**
  * Created by jzj on 16/6/2.
  */
-public class MyAnimDrawable extends Drawable implements Animatable, Drawable.Callback, Runnable {
+public class MyAnimDrawable extends Drawable implements Animatable, Runnable {
 
     private boolean mRunning = false;
-
-    public MyAnimDrawable() {
-        super();
-        setCallback(this);
-    }
 
     @Override
     public void draw(Canvas canvas) {
@@ -49,27 +44,6 @@ public class MyAnimDrawable extends Drawable implements Animatable, Drawable.Cal
             unscheduleSelf(this);
         }
         return changed;
-    }
-
-    public void invalidateDrawable(Drawable who) {
-        final Callback callback = getCallback();
-        if (callback != null) {
-            callback.invalidateDrawable(this);
-        }
-    }
-
-    public void scheduleDrawable(Drawable who, Runnable what, long when) {
-        final Callback callback = getCallback();
-        if (callback != null) {
-            callback.scheduleDrawable(this, what, when);
-        }
-    }
-
-    public void unscheduleDrawable(Drawable who, Runnable what) {
-        final Callback callback = getCallback();
-        if (callback != null) {
-            callback.unscheduleDrawable(this, what);
-        }
     }
 
     @Override
